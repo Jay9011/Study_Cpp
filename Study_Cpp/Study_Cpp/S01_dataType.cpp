@@ -1,4 +1,5 @@
-int main() 
+//int main() 
+int S01_DataType()
 {
 	/**
 	*	¢Æ ÀÚ·áÇü (DataType) ¢Æ
