@@ -18,5 +18,11 @@
     <ClCompile Include="S01_dataType.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="S02_Operator.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="maincpp.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
