@@ -15,13 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="S01_dataType.cpp">
+    <ClCompile Include="S01_DataType.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="S02_Operator.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="maincpp.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="S03_Condition.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
