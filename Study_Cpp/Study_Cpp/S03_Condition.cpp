@@ -44,4 +44,6 @@ int S03_Condition()
 	{
 		iTest = 200;
 	}
+
+	return 0;
 }
