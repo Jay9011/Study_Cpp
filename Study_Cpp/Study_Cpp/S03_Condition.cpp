@@ -16,12 +16,12 @@ int S03_Condition()
 	int iTest = 20;
 	switch (iTest)
 	{
-	case 10:
-	case 20:
-	case 30:
-		break;
-	default:
-		break;
+		case 10:
+		case 20:
+		case 30:
+			break;
+		default:
+			break;
 	}
 
 	if (iTest == 10 || iTest == 20 || iTest == 30)
