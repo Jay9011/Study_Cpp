@@ -7,12 +7,25 @@
 *		② 가독성이 좋아진다.
 *		③ 유지보수가 좋다.
 *		※ define의 경우 뒤의 구문을 치환하기 때문에 ;를 붙이면 사용하기 어려울 수 있다.
+* 
+*	▒ bit 연산을 사용하기 위한 상태값을 만들 때에는 16진수로 만드는 것이 편하다. ▒
+*	16진수로 만들게 되면 4bit씩 띄워서 계산하기 편하다. (1, 2, 4, 8 반복)
 */
-#define HUNGRY	1
-#define THIRSTY	2
-#define TIRED	4
-#define HEAT	8
-#define COLD	16
+#define HUNGRY	0x001		// #define HUNGRY	1
+#define THIRSTY	0x002		// #define THIRSTY	2
+#define TIRED	0x004		// #define TIRED	4
+#define HEAT	0x008		// #define HEAT		8
+
+#define COLD	0x010		// #define COLD		16
+#define STATE1	0x020		// #define STATE1	32
+#define STATE2	0x040		// #define STATE2	64
+#define STATE3	0x080		// #define STATE3	128
+
+#define STATE4	0x100		// #define STATE4	256
+#define STATE5	0x200		// #define STATE5	512
+#define STATE6	0x400		// #define STATE6	1024
+#define STATE6	0x800		// #define STATE7	2048
+
 
 int S04_BitOperator()
 {
