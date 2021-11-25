@@ -143,6 +143,7 @@
     <ClCompile Include="S01_DataType.cpp" />
     <ClCompile Include="S02_Operator.cpp" />
     <ClCompile Include="S03_Condition.cpp" />
+    <ClCompile Include="S04_BitOperator.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
