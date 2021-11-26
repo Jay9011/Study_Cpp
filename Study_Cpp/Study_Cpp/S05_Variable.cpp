@@ -11,4 +11,6 @@ int S05_Variable()
 	*		ⅰ) 정적 지역변수 (static local variable) : 중괄호 내부에서만 사용할 수 있고, 한 번 초기화 되면 이후에 함수 호출 시 값의 초기화를 무시한다.
 	*		ⅱ) 정적 전역변수 (static global variable) : 자신이 선언된 소스 파일에서만 사용할 수 있고, 외부에서는 가져다 쓸 수 없다.
 	*/
+
+	return 0;
 }
