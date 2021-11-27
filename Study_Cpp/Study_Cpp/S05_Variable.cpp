@@ -1,3 +1,4 @@
+#include "stdio.h"
 // 전역 변수
 int _iExternV = 500;
 
@@ -23,6 +24,7 @@ int S05_Variable()
 	*		ⅱ) 선언부 : [extern 자료형 자료명(변수, 함수);] 으로 선언해서 Link 시킬 수 있다.
 	*		ⅲ) 구현부 : 전역변수로 [자료형 자료명(변수, 함수);] 로 실제 구현한다.
 	*/
+	printf("_iExternV value = ", _iExternV);
 
 	return 0;
 }
