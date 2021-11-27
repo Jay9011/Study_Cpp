@@ -146,6 +146,10 @@
     <ClCompile Include="S04_BitOperator.cpp" />
     <ClCompile Include="S05_Variable.cpp" />
     <ClCompile Include="S06_RecursiveFunction.cpp" />
+    <ClCompile Include="S07_Implement.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="S07_Implementation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
