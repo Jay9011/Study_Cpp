@@ -9,12 +9,13 @@ class MyClass
 {
 	/*
 	*	접근 제한 지정자
-	*	 : private, protected, public
-	*	
-	*	멤버변수
-	*	 : 해당 클래스가 사용하는 변수
-	*	멤버함수
-	*	 : 해당 클래스가 사용하는 함수
+	*	 : private, protected (상속), public
+	* 
+	*	맴버변수
+	*	 : 해당 클래스가 사용하는 변수. 해당 클래스의 객체가 필요함.
+	* 
+	*	맴버함수
+	*	 : 해당 클래스가 사용하는 함수. 해당 클래스의 객체가 필요함.
 	*/
 private:
 	int m_i;
@@ -35,7 +36,8 @@ public:
 public:
 	void SetInt(int i)
 	{
-		m_i = i;
+		this->m_i = i;	// this   는 해당 함수를 호출한 객체의 주소 포인터.
+		m_i = i;		// this-> 는 생략될 수 있다. (this->)m_i = i;
 	}
 };
 
