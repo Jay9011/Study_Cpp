@@ -35,6 +35,15 @@ void PushBack(tLinkedList* _pList, int _iData)
 
 void PushFront(tLinkedList* _pList, int _iData)
 {
+	// 새로 생성시킨 노드의 다음 노드를 기존의 헤드노드로 지정한다.
+	tNode* pNewNode = (tNode*)malloc(sizeof(tNode));
+	pNewNode->iData = _iData;
+	pNewNode->pNextNode = _pList->pHeadNode;
+
+	// 리스트의 헤드노드 포인터를 갱신한다.
+	_pList->pHeadNode = pNewNode;
+
+	++_pList->iCount;
 }
 
 // 재귀 함수 버전으로 할 수 있으나, 스택오버플로우가 일어날 위험성이 크다.
