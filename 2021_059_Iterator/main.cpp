@@ -3,7 +3,7 @@
 #include <list>
 
 /*
-* 
+*	iterator
 */
 
 int main()
