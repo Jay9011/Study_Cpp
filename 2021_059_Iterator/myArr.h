@@ -17,9 +17,9 @@ public:
 public:
 	void push_back(const T& _Data);
 	void resize(int _iResizeCount);
-	T* data() { return this->m_pData };
-	int size() { return this->m_iCount };
-	int capacity() { return this->m_iMaxCount };
+	T* data() { return this->m_pData; };
+	int size() { return this->m_iCount; };
+	int capacity() { return this->m_iMaxCount; };
 	T& operator[] (int idx);
 
 	class iterator;		// 전방선언
@@ -66,7 +66,32 @@ public:
 			return this->m_pData[this->m_iIdx];
 		}
 
+		// 전위
 		iterator& operator ++ ()
+		{
+			// end iterator 인 경우
+			// iterator 가 알고 있는 주소와, 가변배열이 알고 있는 주소가 달라진 경우 (공간 확장으로 주소가 달라진 경우)
+			if (this->m_pArr->m_pData != this->m_pData || -1 == this->m_iIdx)
+			{
+				assert(nullptr);
+			}
+		
+			// iterator 가 마지막 데이터를 가리키고 있는 경우
+			// --> end iterator 가 된다.
+			if ((this->m_pArr->size() - 1) == (this->m_iIdx))
+			{
+				this->m_iIdx = -1;
+			}
+			else
+			{
+				++m_iIdx;
+			}
+
+			return *this;
+		}
+
+		// 후위
+		iterator operator ++(int)
 		{
 			return *this;
 		}
@@ -74,6 +99,20 @@ public:
 		iterator& operator -- ()
 		{
 			return *this;
+		}
+
+		// 비교 연산자 ==, !=
+		bool operator == (const iterator& _otherIter)
+		{
+			if (this->m_pData == _otherIter.m_pData && this->m_iIdx == _otherIter.m_iIdx)
+			{
+				return true;
+			}
+			return false;
+		}
+		bool operator != (const iterator& _otherIter)
+		{
+			return !(*this == _otherIter);
 		}
 
 		// end class iterator

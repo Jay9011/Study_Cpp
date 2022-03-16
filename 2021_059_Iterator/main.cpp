@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <list>
+#include "myArr.h"
 
 using std::cout;
 using std::endl;
@@ -13,6 +14,10 @@ using std::list;
 
 int main()
 {
+	/*
+	*	기존의 Iterator
+	*/
+	cout << "기존에 구현된 iterator" << endl;
 	vector<int> vecInt;
 	vecInt.push_back(10);
 	vecInt.push_back(20);
@@ -31,8 +36,29 @@ int main()
 	++listIter;			// 다음 노드를 가리키게 한다.
 	iData = *listIter;
 
-	// *myIterator : 현재 iterator가 가리키고 있는 데이터를 가리켜야 한다.
-	// ++ (전위, 후위), -- (전위, 후위)
+	/*
+	*	구현해야 할 내용
+	* 
+	*	*myIterator : 현재 iterator가 가리키고 있는 데이터를 가리켜야 한다.
+	*	++ (전위, 후위), -- (전위, 후위)
+	*	==, != (비교)
+	*/
+	cout << "직접 구현한 iterator" << endl;
+	MyArr<int> myArr;
+	myArr.push_back(1);
+	myArr.push_back(2);
+	myArr.push_back(3);
+
+	MyArr<int>::iterator myIter = myArr.begin();
+
+	// ++ (전위, 후위), ==, != (비교)
+	for (; myIter != myArr.end(); ++myIter)
+	{
+		cout << *myIter << endl;
+	}
+
+	myIter = myArr.begin();
+	int testData = (*myIter++);
 
 	return 0;
 }
