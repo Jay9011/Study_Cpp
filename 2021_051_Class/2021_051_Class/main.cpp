@@ -78,6 +78,12 @@ int main()
 	c3.SetInt(1000);
 
 	c1 = c2 = c3;
+
+	/*
+	*	※ 복사 생성자가 호출이 되었다.
+	*/
+	MyClass c4 = c3;
+	// MyClass c4(c3); 와 같은 연산이다.
 	
 
 	return 0;
