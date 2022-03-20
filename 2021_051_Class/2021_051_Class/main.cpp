@@ -27,6 +27,16 @@ public:
 		: m_i(1)
 	{
 	}
+	/*
+	*	※ 사용자가 임의로 다른 생성자를 하나라도 생성한 경우,
+	*	  C++ 컴파일러는 기본 생성자를 자동으로 만들어주지 않는다.
+	*/
+	// 복사 생성자
+	MyClass(const MyClass& _other)
+		: m_i(_other.m_i)
+	{
+
+	}
 
 	// 소멸자
 	~MyClass()
@@ -40,7 +50,7 @@ public:
 		m_i = i;		// this-> 는 생략될 수 있다. (this->)m_i = i;
 	}
 
-	// 연산자 오버라이딩 : 해당 클래스에서 연산자를 호출할 때, 해당 함수를 호출한다.
+	// 연산자 오버로딩 : 해당 클래스에서 연산자를 호출할 때, 해당 함수를 호출한다.
 	// 반환타입 operator 연산자 (매개변수)
 	MyClass& operator=(const MyClass& _Other)
 	{
