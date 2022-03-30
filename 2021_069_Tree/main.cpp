@@ -1,6 +1,9 @@
 #include <iostream>
 #include "BinarySearchTree.h"
 
+using std::cout;
+using std::endl;
+
 int main()
 {
 	/*
@@ -16,17 +19,18 @@ int main()
 	*/
 
 	BST<int, int> bstint;
+	bstint.Insert(make_bstPair(100, 0));
+	bstint.Insert(make_bstPair(150, 0));
+	bstint.Insert(make_bstPair(50, 0));
 
-	Pair<int, int> pair;
-	
-	pair.first = 100;
-	bstint.Insert(pair);
+	BST<int, int>::iterator iter;
+	iter = bstint.begin();
+	iter = bstint.find(150);
 
-	pair.first = 150;
-	bstint.Insert(pair);
-	
-	pair.first = 50;
-	bstint.Insert(pair);
+	for (iter = bstint.begin(); iter != bstint.end(); ++iter)
+	{
+		cout << iter->first << " " << iter->second << endl;
+	}
 
 	return 0;
 }
