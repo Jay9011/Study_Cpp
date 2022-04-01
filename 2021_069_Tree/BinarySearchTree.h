@@ -58,6 +58,20 @@ struct BSTNode
 			return true;
 		return false;
 	}
+
+	bool IsLeaf()
+	{
+		if (nullptr == arrNode[(int)NODE_TYPE::LCHILD] && nullptr == arrNode[(int)NODE_TYPE::RCHILD])
+			return true;
+		return false;
+	}
+
+	bool IsFull()
+	{
+		if (arrNode[(int)NODE_TYPE::LCHILD] && arrNode[(int)NODE_TYPE::RCHILD])
+			return true;
+		return false;
+	}
 };
 
 template <typename T1, typename T2>
@@ -76,11 +90,17 @@ public:
 private:
 	BSTNode<T1, T2>* GetInOrderSuccessor(BSTNode<T1, T2>* _pNode);
 	BSTNode<T1, T2>* GetInOrderPredecessor(BSTNode<T1, T2>* _pNode);
+	BSTNode<T1, T2>* DeleteNode(BSTNode<T1, T2>* _pTargetNode);
 
 public:
 	bool Insert(const Pair<T1, T2>& _pair);
 
-public:
+	class iterator;
+	iterator begin();
+	iterator end();
+	iterator find(const T1& _find);
+	iterator erase(const iterator& _iter);
+
 	// iterator
 	class iterator
 	{
@@ -131,11 +151,11 @@ public:
 			m_pNode = m_pBST->GetInOrderSuccessor(m_pNode);
 			return *this;
 		}
-	};
 
-	iterator begin();
-	iterator end();
-	iterator find(const T1& _find);
+		friend class BST<T1, T2>;
+		// end class iterator
+	};
+	// end class BST
 };
 
 template<typename T1, typename T2>
@@ -187,6 +207,76 @@ template<typename T1, typename T2>
 inline BSTNode<T1, T2>* BST<T1, T2>::GetInOrderPredecessor(BSTNode<T1, T2>* _pNode)
 {
 	return nullptr;
+}
+
+template<typename T1, typename T2>
+inline BSTNode<T1, T2>* BST<T1, T2>::DeleteNode(BSTNode<T1, T2>* _pTargetNode)
+{
+	// 삭제시킬 노드의 후속자 노드를 찾아둔다.
+	BSTNode<T1, T2>* pSuccessor = GetInOrderSuccessor(_pTargetNode);
+
+	// 1. 자식이 하나도 없는 경우
+	if (_pTargetNode->IsLeaf())
+	{
+		// 삭제시킬 노드가 하나 남은 Root Node인 경우
+		if (_pTargetNode == m_pRoot)
+		{
+			m_pRoot = nullptr;
+		}
+		else
+		{
+			// 부모노드에서 삭제 될 자식노드의 주소를 null 로 만든다.
+			if (_pTargetNode->IsLeftChild())
+				_pTargetNode->arrNode[(int)NODE_TYPE::PARENT]->arrNode[(int)NODE_TYPE::LCHILD] = nullptr;
+			else
+				_pTargetNode->arrNode[(int)NODE_TYPE::PARENT]->arrNode[(int)NODE_TYPE::RCHILD] = nullptr;
+		}
+
+		--m_iCount;
+		delete _pTargetNode;
+	}
+	// 2. 자식이 2개인 경우
+	else if (_pTargetNode->IsFull())
+	{
+		// 삭제될 자리에 중위 후속자의 값을 복사시킨다.
+		_pTargetNode->pair = pSuccessor->pair;
+
+		// 중위 후속자 노드를 삭제한다.
+		DeleteNode(pSuccessor);
+
+		// 삭제할 노드가 곧 중위 후속자가 되었다.
+		pSuccessor = _pTargetNode;
+	}
+	// 3. 자식이 1개인 경우
+	else
+	{
+		NODE_TYPE eChildType = NODE_TYPE::LCHILD;
+		if (_pTargetNode->arrNode[(int)NODE_TYPE::RCHILD])
+			eChildType = NODE_TYPE::RCHILD;
+
+		// 삭제시킬 노드가 Root Node인 경우
+		if (_pTargetNode == m_pRoot)
+		{
+			// 자식노드를 RootNode로 만든다.
+			m_pRoot = _pTargetNode->arrNode[(int)eChildType];
+			_pTargetNode->arrNode[(int)eChildType]->arrNode[(int)NODE_TYPE::PARENT] = nullptr;
+		}
+		// 삭제될 노드의 부모와, 삭제될 노드의 자식을 연결해준다.
+		else
+		{
+			if (_pTargetNode->IsLeftChild())
+				_pTargetNode->arrNode[(int)NODE_TYPE::PARENT]->arrNode[(int)NODE_TYPE::LCHILD] = _pTargetNode->arrNode[(int)eChildType];
+			else
+				_pTargetNode->arrNode[(int)NODE_TYPE::PARENT]->arrNode[(int)NODE_TYPE::RCHILD] = _pTargetNode->arrNode[(int)eChildType];
+
+			_pTargetNode->arrNode[(int)eChildType]->arrNode[(int)NODE_TYPE::PARENT] = _pTargetNode->arrNode[(int)NODE_TYPE::PARENT];
+		}
+
+		--m_iCount;
+		delete _pTargetNode;
+	}
+
+	return pSuccessor;
 }
 
 template<typename T1, typename T2>
@@ -279,4 +369,14 @@ inline typename BST<T1, T2>::iterator BST<T1, T2>::find(const T1& _find)
 	}
 
 	return iterator(this, pNode);
+}
+
+template<typename T1, typename T2>
+inline typename BST<T1,T2>::iterator BST<T1, T2>::erase(const iterator& _iter)
+{
+	assert(this == _iter.m_pBST);
+
+	BSTNode<T1, T2>* pSuccessor = DeleteNode(_iter.m_pNode);
+
+	return iterator(this, pSuccessor);
 }
