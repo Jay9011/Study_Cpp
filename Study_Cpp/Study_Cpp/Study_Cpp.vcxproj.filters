@@ -44,5 +44,8 @@
     <ClInclude Include="S07_Implementation.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Swap.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

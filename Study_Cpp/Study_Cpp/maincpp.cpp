@@ -1,5 +1,6 @@
 #include "stdio.h"
 #include "S07_Implementation.h"
+#include "Swap.h"
 
 extern int S01_DataType();
 extern int S02_Operator();
@@ -13,9 +14,7 @@ extern int _iExternV;
 
 int main()
 {
-	S06_RecursiveFunction();
-
-	int iNum1 = add(1, 2);
-
-	printf("_iExternV °ª : %d", _iExternV);
+	int a = 1, b = 2;
+	Swap(&a, &b);
+	Swap(a, b);
 }
